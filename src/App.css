@@ -9,14 +9,15 @@ body{
   cursor: pointer
 }
 div .Marques{
-  width: 10vw;
   height: 13vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .MarquesBox{
   width: 100vw;
+  overflow: hidden;
 }
 .Selects{
   display: flex;
@@ -25,12 +26,20 @@ div .Marques{
 .Chaussures {
   width: 90vw;
   margin:auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
+
+}
+Card{
+  margin-top: 4vw;
 }
 .citysport{
   height: 4vw;
   cursor: pointer
+}
+h3{
+  text-align: center;
 }
 .navbar{
   display: flex;

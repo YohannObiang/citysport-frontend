@@ -60,7 +60,7 @@ export default function Chaussures() {
         </Box>
         </div>
         <div className='Chaussures'>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, marginTop: 5 }}>
       <CardMedia
         component="img"
         height="140"
@@ -81,7 +81,7 @@ export default function Chaussures() {
         <Button size="small">Ajouter au panier</Button>
       </CardActions>
         </Card>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, marginTop: 5 }}>
       <CardMedia
         component="img"
         height="140"
@@ -102,7 +102,28 @@ export default function Chaussures() {
         <Button size="small">Ajouter au panier</Button>
       </CardActions>
         </Card>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, marginTop: 5 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={jordan}
+        alt="jordan"
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+        NIKE AIR JORDAN 1
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Lizards are a widespread group of squamate reptiles, with over 6,000
+          species, ranging across all continents except Antarctica
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button size="small">Acheter</Button>
+        <Button size="small">Ajouter au panier</Button>
+      </CardActions>
+        </Card>
+        <Card sx={{ maxWidth: 345, marginTop: 5 }}>
       <CardMedia
         component="img"
         height="140"
