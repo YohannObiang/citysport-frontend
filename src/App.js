@@ -3,7 +3,7 @@ import Topbar from './components/topbar';
 import Searchbar from './components/searchbar';
 import Marques from './components/marques';
 import Chaussures from './components/chaussures';
-
+import PersonList from './components/PersonList';
 
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
       <Searchbar/>
       <Marques/>
       <Chaussures/>
+      <PersonList/>
     </div>
   );
 }

@@ -1,9 +1,13 @@
+*{
+  margin: 0;
+  padding: 0
+}
 body{
   display: flex;
   justify-content: center;
 }
 .App{
-  width: 100vw;
+  width: 100%;
 }
 .logo{
   cursor: pointer
@@ -19,16 +23,20 @@ div .Marques{
   width: 100vw;
   overflow: hidden;
 }
+.chaussuresBox{
+  width: 100vw;
+}
 .Selects{
   display: flex;
   margin: 4vw 5vw;
 }
 .Chaussures {
-  width: 90vw;
-  margin:auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-content: space-between;
+width: 90vw;
+padding: 0;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+justify-content: space-between;
+margin: auto;
 
 }
 Card{
@@ -54,7 +62,6 @@ h3{
   justify-content: space-between;
   align-items: center;
   margin: 4vw 5vw 0 5vw;
-  width: 90vw;
 }
 Button, Stack{
   height: 55px;
