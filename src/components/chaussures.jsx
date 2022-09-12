@@ -24,10 +24,10 @@ export default function Chaussures() {
     }, []);
   
     const getChaussures = async () => {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+      const response = await axios.get("http://localhost:3000/api/chaussures");
       setChaussures(response.data);
     };
-  
+
   
 
   const [Pointure, setPointure] = React.useState('');
@@ -42,7 +42,7 @@ export default function Chaussures() {
   };
 
   return (
-    <div className='chaussuresBox'>
+    <div className='chaussuresBox' id='shoes'>
         <div className='Selects'>
           <Box sx={{ minWidth: 120, marginRight: 3, width: 200 }}>
           <FormControl fullWidth>
@@ -79,20 +79,23 @@ export default function Chaussures() {
         <div className='Chaussures'>
         {chaussures.map((chaussure, index) => {
           return(
-          <Card sx={{ width: 280, marginBottom: 5 }}  key={chaussure.name}>
+          <Card sx={{ width: 280, marginBottom: 5 }}  key={chaussure.nom_chaussure}>
         <CardMedia
           component="img"
           height="140"
-          image={jordan}
+          image={chaussure.images}
           alt="jordan"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-          {chaussure.name}
+          {chaussure.nom_chaussure}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+            Couleur:{chaussure.couleur} - Pointure:{chaussure.pointure}
+          </Typography>
+          <br></br>
+          <Typography variant="h6">
+          {chaussure.prix}
           </Typography>
         </CardContent>
         <CardActions>
@@ -100,69 +103,6 @@ export default function Chaussures() {
           <Button size="small">Ajouter au panier</Button>
         </CardActions>
           </Card>)})}
-          <Card sx={{ width: 280, marginBottom: 5 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={jordan}
-          alt="jordan"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          NIKE AIR JORDAN 1
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Acheter</Button>
-          <Button size="small">Ajouter au panier</Button>
-        </CardActions>
-          </Card>
-          <Card sx={{ width: 280, marginBottom: 5 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={jordan}
-          alt="jordan"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          NIKE AIR JORDAN 1
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Acheter</Button>
-          <Button size="small">Ajouter au panier</Button>
-        </CardActions>
-          </Card>
-          <Card sx={{ width: 280, marginBottom: 5 }}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={jordan}
-          alt="jordan"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          NIKE AIR JORDAN 1
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Acheter</Button>
-          <Button size="small">Ajouter au panier</Button>
-        </CardActions>
-          </Card>
         </div>
         
     </div>
