@@ -8,7 +8,7 @@ export default class PersonList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:3002/api/chaussures`)
+    axios.get(`http://localhost:3001/api/chaussures`)
       .then(res => {
         const persons = res.data;
         this.setState({ persons });
@@ -20,6 +20,7 @@ export default class PersonList extends React.Component {
     return (
       <ul>
         { this.state.persons.map(person => <li>{person.nom_chaussure}</li>)}
+        hhhh
       </ul>
     )
   }

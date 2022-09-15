@@ -13,12 +13,14 @@ import Converse from "../logo/Converse.png";
 export default class CenterMode extends Component {
   render() {
     const settings = {
-      className: "center",
-      centerMode: true,
       infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 3,
-      speed: 500
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      autoplay: true,
+      speed: 3000,
+      autoplaySpeed: 3000,
+      cssEase: "linear",
+      pauseOnHover: true
     };
     return (
       <div className="MarquesBox">
