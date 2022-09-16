@@ -14,30 +14,47 @@ import React, { useState, useEffect } from "react";
 
 
 
-export default function Chaussures() {
+export default function Chaussures({chaussures, setChaussures}) {
   
-    const [chaussures, setChaussures] = useState([]);
-    const [chaussuress, setChaussuress] = useState([]);
+    const [allShoes, setallShoes] = useState([]);
+    
+
 
     useEffect(() => {
       getChaussures();
-    }, []);
+    });
   
     const getChaussures = async () => {
       var response = await axios.get("http://localhost:3001/api/chaussures");
-      setChaussures(response.data);
-      setChaussuress(response.data);
-
+      setallShoes(response.data);
     };
 
-  
-
   const [Pointures, setPointures] = React.useState(0);
+
+  const [Sizes, setSizes] = React.useState([]);
+  useEffect(() => {
+    getSizes();
+  }, []);
+
+  const getSizes = async () => {
+    var response = await axios.get("http://localhost:3001/api/pointure/chaussures");
+    setSizes(response.data);
+  };
+  
+  const [Brands, setBrands] = React.useState([]);
+  useEffect(() => {
+    getBrands();
+  }, []);
+
+  const getBrands = async () => {
+    var response = await axios.get("http://localhost:3001/api/marques");
+    setBrands(response.data);
+  };
 
   const handleChangePointures = (event) => {
     setPointures(event.target.value);
   };
-  
+
   const [Marques, setMarques] = React.useState(0);
 
   const handleChangeMarques = (event) => {
@@ -45,28 +62,30 @@ export default function Chaussures() {
   };
 
   const filteredBrand = () => {
+
     if(Marques !== 0){
       if(Pointures === 0){
-        var filteredData = chaussuress.filter(chaussure => chaussure.id_marque === Marques);
+        var filteredData = allShoes.filter(chaussure => chaussure.id_marque === Marques);
       setChaussures(filteredData);
       }
       else{
-        var filteredData = chaussuress.filter(chaussure => chaussure.id_marque === Marques);
-        var filteredShoes = filteredData.filter(chaussure => chaussure.pointure === Pointures);
+        var filtereddata = allShoes.filter(chaussure => chaussure.id_marque === Marques);
+        var filteredShoes = filtereddata.filter(chaussure => chaussure.pointure === Pointures);
         setChaussures(filteredShoes)
       }  
     }
     else{
       if(Pointures !== 0){
-        var filteredShoes = chaussuress.filter(chaussure => chaussure.pointure === Pointures);
-        setChaussures(filteredShoes)
+        var filteredshoes = allShoes.filter(chaussure => chaussure.pointure === Pointures);
+        setChaussures(filteredshoes)
       }
       else{
-        setChaussures(chaussuress)
+        setChaussures(allShoes)
       }
     }
   }
 
+  
   return (
     <div className='chaussuresBox' id='shoes'>
       
@@ -82,18 +101,14 @@ export default function Chaussures() {
               onChange={handleChangePointures}
               >
               <MenuItem value={0}>Toutes</MenuItem>
-              <MenuItem value={39}>39</MenuItem>
-              <MenuItem value={40}>40</MenuItem>
-              <MenuItem value={41}>41</MenuItem>
-              <MenuItem value={45}>45</MenuItem>
-              <MenuItem value={30}>30</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={28}>28</MenuItem>
-
-
+              {Sizes.map((item) => {
+                return(
+                  <MenuItem key={item.pointure} value={item.pointure}>{item.pointure}</MenuItem>
+              )})}
               </Select>
           </FormControl>
           </Box>
+
           <Box sx={{ minWidth: 120, marginRight: 3, width: 200  }}>
           <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Marques</InputLabel>
@@ -105,12 +120,11 @@ export default function Chaussures() {
               onChange={handleChangeMarques}
           >
               <MenuItem value={0}>Toutes</MenuItem>
-              <MenuItem value={1}>Nike</MenuItem>
-              <MenuItem value={2}>Adidas</MenuItem>
-              <MenuItem value={3}>Asics</MenuItem>
-              <MenuItem value={6}>Puma</MenuItem>
-              <MenuItem value={5}>Converse</MenuItem>
-
+              {Brands.map((item) => {
+                return(
+                  <MenuItem key={item.marque} value={item.id_marque}>{item.marque}</MenuItem>
+              )})}
+              
           </Select>
           
           </FormControl>
@@ -121,8 +135,10 @@ export default function Chaussures() {
         </div>
         
         <div className='Chaussures'>
-        {chaussures.map((chaussure, index) => {
+        
+        {chaussures.map((chaussure) => {
           return(
+
           <Card sx={{ width: 280, marginBottom: 5 }}  key={chaussure.nom_chaussure} >
         <CardMedia
           component="img"
@@ -135,7 +151,6 @@ export default function Chaussures() {
           {chaussure.nom_chaussure}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-
             Couleur:{chaussure.couleur} - Pointure:{chaussure.pointure}
           </Typography>
           <br></br>
@@ -145,7 +160,7 @@ export default function Chaussures() {
         </CardContent>
         <CardActions>
           <Button size="small" > Acheter</Button>
-          <Button size="small"onClick={()=>getChaussures()}>Ajouter au panier</Button>
+          <Button size="small" >Ajouter au panier</Button>
         </CardActions>
           </Card>)})}
         </div>

@@ -5,7 +5,12 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Searchbar() {
+export default function Searchbar({setSearchTerm, handleSearchTerm}) {
+  const handleChange = () => {
+    let value = document.getElementById('search').value;
+    setSearchTerm(value)
+  }
+
   return (
     <div className='searchbox'>
         <Box
@@ -16,10 +21,10 @@ export default function Searchbar() {
         noValidate
         autoComplete="off"
         >
-        <TextField id="outlined-basic" label="Que recherchez-vous?" variant="outlined" />
+        <TextField id="search" label="Que recherchez-vous?" onChange={handleChange}  variant="outlined" />
         </Box>
         <Stack direction="row" spacing={1}>
-          <Button variant="contained" endIcon={<SearchIcon />}>
+          <Button variant="contained" endIcon={<SearchIcon />} onClick = {handleSearchTerm} >
             Rechercher
           </Button>
         </Stack>

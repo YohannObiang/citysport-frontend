@@ -8,6 +8,10 @@ body{
 }
 .App{
   width: 100%;
+
+}
+html,body{
+  overflow-x: hidden;
 }
 .logo{
   cursor: pointer
