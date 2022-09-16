@@ -13,6 +13,7 @@ function App() {
   const [SearchTerm, setSearchTerm] = useState("");
   const [allShoes, setallShoes] = useState([]);
   const [chaussures, setChaussures] = useState([]);
+  const [filteredDataSearch, setfilteredDataSearch] = useState([]);
 
   useEffect(() => {
     getChaussures();
@@ -34,6 +35,7 @@ function App() {
     console.log(SearchTerm)
     var filteredShoes = allShoes.filter(chaussure => chaussure.nom_chaussure.toLowerCase().includes(SearchTerm.toLowerCase()));
     console.log(filteredShoes)
+    setfilteredDataSearch(filteredShoes)
     setChaussures(filteredShoes)
   }
     else{
@@ -46,7 +48,7 @@ function App() {
       <Topbar/>
       <Searchbar handleSearchTerm = {handleSearchTerm} setSearchTerm ={setSearchTerm}/>
       <Marques/>
-      <Chaussures SearchTerm = {SearchTerm} chaussures = {chaussures} setChaussures = {setChaussures} />
+      <Chaussures SearchTerm = {SearchTerm} filteredDataSearch = {filteredDataSearch} chaussures = {chaussures} setChaussures = {setChaussures} />
     </div>
   );
 }

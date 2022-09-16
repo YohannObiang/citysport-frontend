@@ -62,7 +62,7 @@ export default function Chaussures({chaussures, setChaussures}) {
   };
 
   const filteredBrand = () => {
-
+    
     if(Marques !== 0){
       if(Pointures === 0){
         var filteredData = allShoes.filter(chaussure => chaussure.id_marque === Marques);
