@@ -25,7 +25,7 @@ export default function Chaussures({chaussures, setChaussures}) {
     });
   
     const getChaussures = async () => {
-      var response = await axios.get("http://localhost:3001/api/chaussures");
+      var response = await axios.get("https://mocki.io/v1/e12fdd3b-e9d5-49cd-b814-a3612f246ec8");
       setallShoes(response.data);
     };
 
@@ -37,7 +37,7 @@ export default function Chaussures({chaussures, setChaussures}) {
   }, []);
 
   const getSizes = async () => {
-    var response = await axios.get("http://localhost:3001/api/pointure/chaussures");
+    var response = await axios.get("https://mocki.io/v1/aa0fe183-3ca8-4302-9819-95d63667067a");
     setSizes(response.data);
   };
   
@@ -47,7 +47,7 @@ export default function Chaussures({chaussures, setChaussures}) {
   }, []);
 
   const getBrands = async () => {
-    var response = await axios.get("http://localhost:3001/api/marques");
+    var response = await axios.get("https://mocki.io/v1/89067159-e2e8-4c9b-9ba1-56e08188f952");
     setBrands(response.data);
   };
 

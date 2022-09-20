@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   const getChaussures = async () => {
-    var response = await axios.get("http://localhost:3001/api/chaussures");
+    var response = await axios.get("https://mocki.io/v1/e12fdd3b-e9d5-49cd-b814-a3612f246ec8");
     setallShoes(response.data);
     setChaussures(response.data);
 
