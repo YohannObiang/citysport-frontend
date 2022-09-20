@@ -25,7 +25,7 @@ export default function Chaussures({chaussures, setChaussures}) {
     });
   
     const getChaussures = async () => {
-      var response = await axios.get("https://mocki.io/v1/e12fdd3b-e9d5-49cd-b814-a3612f246ec8");
+      var response = await axios.get("https://mocki.io/v1/7a36420f-a309-4dc6-8717-0748a6798aec");
       setallShoes(response.data);
     };
 
