@@ -14,7 +14,7 @@ import React, { useState, useEffect } from "react";
 
 
 
-export default function Chaussures({chaussures, setChaussures}) {
+export default function Chaussures({chaussures, setChaussures, orderedShoes, SetNumberArticleInCart}) {
   
     const [allShoes, setallShoes] = useState([]);
     
@@ -25,7 +25,7 @@ export default function Chaussures({chaussures, setChaussures}) {
     });
   
     const getChaussures = async () => {
-      var response = await axios.get("https://mocki.io/v1/7a36420f-a309-4dc6-8717-0748a6798aec");
+      var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
       setallShoes(response.data);
     };
 
@@ -37,7 +37,7 @@ export default function Chaussures({chaussures, setChaussures}) {
   }, []);
 
   const getSizes = async () => {
-    var response = await axios.get("https://mocki.io/v1/aa0fe183-3ca8-4302-9819-95d63667067a");
+    var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
     setSizes(response.data);
   };
   
@@ -47,7 +47,7 @@ export default function Chaussures({chaussures, setChaussures}) {
   }, []);
 
   const getBrands = async () => {
-    var response = await axios.get("https://mocki.io/v1/89067159-e2e8-4c9b-9ba1-56e08188f952");
+    var response = await axios.get("https://mocki.io/v1/1a49f10e-a78c-4a01-ad9b-cca3c486c972");
     setBrands(response.data);
   };
 
@@ -85,6 +85,21 @@ export default function Chaussures({chaussures, setChaussures}) {
     }
   }
 
+
+
+
+  //Ajouter un element au panier
+
+
+  const deleteStudent=(id_Chaussures)=>{
+    const filteredStudents=chaussures.filter((element,index)=>{
+      return element.id_Chaussures === id_Chaussures});
+      orderedShoes.push(filteredStudents[0])
+      SetNumberArticleInCart(orderedShoes.length)
+      console.log(orderedShoes)
+
+
+  };
   
   return (
     <div className='chaussuresBox' id='shoes'>
@@ -160,7 +175,7 @@ export default function Chaussures({chaussures, setChaussures}) {
         </CardContent>
         <CardActions>
           <Button size="small" > Acheter</Button>
-          <Button size="small" >Ajouter au panier</Button>
+          <Button size="small"onClick={()=>deleteStudent(chaussure.id_Chaussures)} >Ajouter au panier</Button>
         </CardActions>
           </Card>)})}
         </div>

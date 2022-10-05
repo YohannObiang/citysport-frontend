@@ -1,14 +1,28 @@
 import './App.css';
 import Topbar from './components/topbar';
-import Searchbar from './components/searchbar';
-import Marques from './components/marques';
-import Chaussures from './components/chaussures';
+
 import React, { useState, useEffect} from "react";
 import axios from 'axios';
+import HomePage from './Pages/Home';
+import { BrowserRouter, Routes, Route,Link } from "react-router-dom";
+import Cart from './Pages/Cart';
+
+
+const getDatafromLS = () => {
+  const data = localStorage.getItem('panier');
+  if(data){
+    return JSON.parse(data)
+  }
+  else{
+    return[]
+  }
+}
 
  
 
 function App() {
+
+
 
   const [SearchTerm, setSearchTerm] = useState("");
   const [allShoes, setallShoes] = useState([]);
@@ -20,7 +34,7 @@ function App() {
   }, []);
 
   const getChaussures = async () => {
-    var response = await axios.get("https://mocki.io/v1/e12fdd3b-e9d5-49cd-b814-a3612f246ec8");
+    var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
     setallShoes(response.data);
     setChaussures(response.data);
 
@@ -43,13 +57,39 @@ function App() {
     }
   };
 
+  const [orderedShoes, SetOrderedShoes] = useState(getDatafromLS());
+  const [NumberArticleInCart, SetNumberArticleInCart] = useState(orderedShoes.length);
+  localStorage.setItem('panier', JSON.stringify(orderedShoes))
+  
+  const articleInCart = () => {
+    SetNumberArticleInCart(orderedShoes.length)
+  }
+  
+
+
   return (
     <div className="App">
-      <Topbar/>
-      <Searchbar handleSearchTerm = {handleSearchTerm} setSearchTerm ={setSearchTerm}/>
-      <Marques/>
-      <Chaussures SearchTerm = {SearchTerm} filteredDataSearch = {filteredDataSearch} chaussures = {chaussures} setChaussures = {setChaussures} />
-    </div>
+
+      <BrowserRouter>
+      <Topbar NumberArticleInCart= {NumberArticleInCart}/>
+      <Routes>
+        <Route path="/" element={<HomePage 
+        handleSearchTerm = {handleSearchTerm} 
+        setSearchTerm ={setSearchTerm}
+        SetNumberArticleInCart= {SetNumberArticleInCart} 
+        orderedShoes = {orderedShoes} 
+        SetOrderedShoes={SetOrderedShoes} 
+        SearchTerm = {SearchTerm} 
+        filteredDataSearch = {filteredDataSearch} 
+        chaussures = {chaussures} 
+        setChaussures = {setChaussures} 
+        />} />
+         <Route path="/panier" element={<Cart 
+        orderedShoes = {orderedShoes} 
+        />} /> 
+      </Routes>
+      </BrowserRouter>
+  </div>
   );
 }
 
