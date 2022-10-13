@@ -14,6 +14,7 @@ import Stack from '@mui/material/Stack';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -40,7 +41,16 @@ function createData( name, calories, fat, carbs, protein ) {
 
 
 
-export default function CustomizedTables({orderedShoes}) {
+export default function CustomizedTables({orderedShoes, SetOrderedShoes, SetNumberArticleInCart}) {
+  const deleteStudent=(id_Chaussures)=>{
+    const filteredStudents=orderedShoes.filter((element,index)=>{
+      return element.id_Chaussures !== id_Chaussures})
+      localStorage.removeItem('panier')
+      SetOrderedShoes(filteredStudents)
+      SetNumberArticleInCart(orderedShoes.length - 1)
+      console.log(filteredStudents)
+
+  };
   return (
     <TableContainer component={Paper}>
       <Table sx={{ width: 700, margin: 'auto ' }} aria-label="customized table">
@@ -62,7 +72,7 @@ export default function CustomizedTables({orderedShoes}) {
               </StyledTableCell>
               <StyledTableCell align="right">
                 {row.prix} FCFA 
-                <IconButton color="primary"  component="label">
+                <IconButton color="primary"  component="label" onClick={()=>deleteStudent(row.id_Chaussures)}>
                 <HighlightOffIcon />
                 </IconButton>
                 </StyledTableCell>

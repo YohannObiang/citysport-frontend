@@ -20,11 +20,12 @@ export default function Searchbar({setSearchTerm, handleSearchTerm}) {
         }}
         noValidate
         autoComplete="off"
+        className='search'
         >
         <TextField id="search" label="Que recherchez-vous?" onChange={handleChange}  variant="outlined" />
         </Box>
-        <Stack direction="row" spacing={1}>
-          <Button variant="contained" endIcon={<SearchIcon />} onClick = {handleSearchTerm} >
+        <Stack direction="row" spacing={1} className='searchbtn'>
+          <Button className='searchbtn' variant="contained" endIcon={<SearchIcon />} onClick = {handleSearchTerm} >
             Rechercher
           </Button>
         </Stack>

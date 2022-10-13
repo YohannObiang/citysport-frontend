@@ -6,6 +6,7 @@ import axios from 'axios';
 import HomePage from './Pages/Home';
 import { BrowserRouter, Routes, Route,Link } from "react-router-dom";
 import Cart from './Pages/Cart';
+import Validation from './Pages/Validation';
 
 
 const getDatafromLS = () => {
@@ -34,7 +35,7 @@ function App() {
   }, []);
 
   const getChaussures = async () => {
-    var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
+    var response = await axios.get("http://localhost:3001/api/chaussures");
     setallShoes(response.data);
     setChaussures(response.data);
 
@@ -85,7 +86,13 @@ function App() {
         setChaussures = {setChaussures} 
         />} />
          <Route path="/panier" element={<Cart 
+         getDatafromLS = {getDatafromLS}
         orderedShoes = {orderedShoes} 
+        SetNumberArticleInCart= {SetNumberArticleInCart} 
+        SetOrderedShoes = {SetOrderedShoes}
+        />} /> 
+        <Route path="/panier/validation" element={<Validation
+         orderedShoes = {orderedShoes}
         />} /> 
       </Routes>
       </BrowserRouter>

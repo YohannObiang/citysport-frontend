@@ -89,4 +89,32 @@ h3{
 Button, Stack{
   height: 55px;
 }
+.validation{
+  text-align: center;
+}
+a{
+  text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+  .search{
+    width: 10%;
+  }
+  #search{
+    width: 10%;
+    height: 5px;
 
+  }
+  .searchbtn{
+    width:5vw
+  }
+  .searchbox{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0vw 0vw 0 0vw;
+  }
+}

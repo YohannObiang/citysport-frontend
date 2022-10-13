@@ -25,7 +25,7 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
     });
   
     const getChaussures = async () => {
-      var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
+      var response = await axios.get("http://localhost:3001/api/chaussures");
       setallShoes(response.data);
     };
 
@@ -37,17 +37,17 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
   }, []);
 
   const getSizes = async () => {
-    var response = await axios.get("https://mocki.io/v1/ffed7ee3-16a2-4c78-9708-0f42dfe94649");
+    var response = await axios.get("http://localhost:3001/api/chaussures/bolo/pointures");
     setSizes(response.data);
   };
   
   const [Brands, setBrands] = React.useState([]);
-  useEffect(() => {
+  React.useEffect(() => {
     getBrands();
   }, []);
 
   const getBrands = async () => {
-    var response = await axios.get("https://mocki.io/v1/1a49f10e-a78c-4a01-ad9b-cca3c486c972");
+    var response = await axios.get("http://localhost:3001/api/marques");
     setBrands(response.data);
   };
 
@@ -94,7 +94,7 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
   const deleteStudent=(id_Chaussures)=>{
     const filteredStudents=chaussures.filter((element,index)=>{
       return element.id_Chaussures === id_Chaussures});
-      orderedShoes.push(filteredStudents[0])
+      orderedShoes.push(filteredStudents[0]);
       SetNumberArticleInCart(orderedShoes.length)
       console.log(orderedShoes)
 
@@ -112,7 +112,7 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={Pointures}
-              label="Age"
+              label="Pointure"
               onChange={handleChangePointures}
               >
               <MenuItem value={0}>Toutes</MenuItem>
@@ -131,7 +131,7 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={Marques}
-              label="Age"
+              label="Marques"
               onChange={handleChangeMarques}
           >
               <MenuItem value={0}>Toutes</MenuItem>
@@ -154,7 +154,7 @@ export default function Chaussures({chaussures, setChaussures, orderedShoes, Set
         {chaussures.map((chaussure) => {
           return(
 
-          <Card sx={{ width: 280, marginBottom: 5 }}  key={chaussure.nom_chaussure} >
+          <Card sx={{ width: 270, marginBottom: 5}}  key={chaussure.nom_chaussure} >
         <CardMedia
           component="img"
           height="140"
